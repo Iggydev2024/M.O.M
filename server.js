@@ -1,4 +1,4 @@
-const express = require ('express');
+const express = require('express');
 const mongoose = require('mongoose');
 const { MongoClient, ServerApiVersion } = require ('mongodb');
 const Visitor = require('./models/visitorModel');
@@ -7,6 +7,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+
 
 // Load environment variables from .env file
 dotenv.config();
@@ -17,6 +18,19 @@ app.use(express.json());
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
+
+//routes
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+});
+
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'about.html'));
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+});
 
 app.use(session({
     secret: process.env.SESSION_SECRET, 
