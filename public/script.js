@@ -1,18 +1,8 @@
-document.querySelector('.navbar a').addEventListener('click', function(event) {
-    event.preventDefault();
-    alert('You clicked a navbar link!');
+$(document).ready(function() {
+    $('.menu-toggle').on('click', function() {
+        $('nav').toggleClass('showing');
+    });
 });
-
-function toggleNavbar() {
-    var x = document.getElementById("navbar");
-    if (x.className === "") {
-        x.className += " responsive";
-    } else {
-        x.className = "";
-    }
-}
-
-
 
 document.getElementById('dataForm').addEventListener('submit', async function(event) {
     event.preventDefault();
