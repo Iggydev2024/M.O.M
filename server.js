@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const { MongoClient, ServerApiVersion } = require ('mongodb');
 const Visitor = require('./models/visitorModel');
 const app = express();
+const bodyParser = require('body-parser');
 const path = require('path');
 const dotenv = require('dotenv');
 const session = require('express-session');
@@ -11,6 +12,7 @@ const MongoStore = require('connect-mongo');
 
 // Load environment variables from .env file
 dotenv.config();
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const port= process.env.PORT;
 
@@ -92,14 +94,11 @@ app.put('/visitors/:id', async(req,res) => {
         }
         const updatedVisitor = await Visitor.findById(id);
         res.status(200).json(updatedVisitor);
-
-
     }catch (error) {
         res.status(500).json({message:error.message})
     }
-
-
 })
+
 // delete a visitor
  app.delete('/visitors/:id', async(req,res) => {
     try{
