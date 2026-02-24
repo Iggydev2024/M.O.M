@@ -1,8 +1,11 @@
 .env
 node_modules/
-.vscode/
+dist/
+build/
 
-# But keep specific settings files
-!.vscode/settings.json
-!.vscode/extensions.json
-!.vscode/launch.json
+# logs
+logs
+*.log
+
+# OS files
+.DS_Store
